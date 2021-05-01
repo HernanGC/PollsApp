@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if latest_question %}
+    {% for question in latest_question %}
+        <div data-url="http://{{ request.get_host }}/{{ question.pk }}" id="{{ question.pk }}" class="question-box">
+            <p>❓ {{ question.question_text }}</p>
+            <p>📆 {{ question.get_pub_date }}</p>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}
