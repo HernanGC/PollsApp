@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if question %}
+<a href="{% url 'detail' question.id %}">
+    <p class="question-title">{{ question.question_text }}</p>
+</a>
+{% endif %}
+<div class="details-box">
+    {% for choice in choices_result %}
+        <p>{{ choice.choice_text }} - {{ choice.votes }} votes!</p>
+    {% endfor %}
+</div>
+{% endblock %}

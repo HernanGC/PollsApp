@@ -21,7 +21,7 @@ class Choice(models.Model):
     votes = models.IntegerField(default=0)
 
     def __str__(self):
-        return f'{self.question.id} - {self.choice_text}'
+        return f'{self.question.id} - {self.choice_text} - {self.pk}'
 
     def get_question(self):
         return self.question
@@ -31,4 +31,7 @@ class Choice(models.Model):
 
     def get_question_date(self):
         return self.question.get_pub_date()
+
+    def vote(self):
+        self.votes += 1
 

@@ -1,11 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
 {% if question %}
-    <p>{{ question.question_text }}</p>
+    <p class="question-title">{{ question.question_text }}</p>
 {% endif %}
 {% if choices %}
-    {% for choice in choices %}
-        <p>{{ choice.choice_text }}</p>
-    {% endfor %}
+    <div class="details-box">
+        <form class="answer-form" action="vote" method="post">
+            {% csrf_token %}
+            {% for choice in choices %}
+                <div class="answer-row" data-row="row-{{ choice.pk }}">
+                    <input class="choice-input" type="radio" name="choice" value="{{ choice.pk }}">
+                    <label for="choice>">{{ choice.choice_text }}</label>
+                </div>
+            {% endfor %}
+            <button type="submit">Submit</button>
+            <a href="{% url 'results' question.id %}"><button type="button">Results</button></a>
+        </form>
+    </div>
 {% endif %}
 {% endblock %}

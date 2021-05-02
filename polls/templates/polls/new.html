@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="details-box">
+    <form action="{% url 'add_question' %}" method="POST">
+        {% csrf_token %}
+        <label for="question">Enter the question</label>
+        <input type="text" name="question">
+
+        <label for="choice">First choice</label>
+        <input type="text" name="choice">
+
+        <label for="choice">Second choice</label>
+        <input type="text" name="choice">
+
+        <label for="choice">Third choice</label>
+        <input type="text" name="choice">
+
+        <label for="choice">Fourth choice</label>
+        <input type="text" name="choice">
+        <button id="add-question" type="submit">Add new</button>
+    </form>
+</div>
+{% endblock %}
